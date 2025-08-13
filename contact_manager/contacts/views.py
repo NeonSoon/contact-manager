@@ -1,4 +1,6 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Contact
 
 def contact_list(request):
-    return HttpResponse("這是聯絡人列表頁面")
+    contacts = Contact.objects.all()
+    return render(request, "contacts/contact_list.html", {"contacts": contacts})

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>聯絡人列表</title>
+</head>
+<body>
+    <h1>聯絡人列表</h1>
+    <ul>
+        {% for contact in contacts %}
+            <li>{{ contact.name }} - {{ contact.email }} - {{ contact.phone }}</li>
+        {% empty %}
+            <li>目前沒有聯絡人</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
