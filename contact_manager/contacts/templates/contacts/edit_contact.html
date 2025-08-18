@@ -1,0 +1,7 @@
+<h2>編輯聯絡人</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">儲存修改</button>
+</form>
+<a href="{% url 'contact_list' %}">回到列表</a>
