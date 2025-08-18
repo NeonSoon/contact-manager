@@ -9,6 +9,7 @@
         {% for contact in contacts %}
             <li>{{ contact.name }} - {{ contact.email }} - {{ contact.phone }}</li>
             <a href="{% url 'edit_contact' contact.id %}">編輯</a>
+            <a href="{% url 'delete_contact' contact.id %}">刪除</a>
         {% empty %}
             <li>目前沒有聯絡人</li>
         {% endfor %}
