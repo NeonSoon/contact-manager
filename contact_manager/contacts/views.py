@@ -4,6 +4,7 @@ from .forms import ContactForm
 from django.shortcuts import get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 
 
 def contact_list(request):
@@ -55,3 +56,13 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect("login")
+
+def signup(request):
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")  # 註冊成功後跳轉登入
+    else:
+        form = UserCreationForm()
+    return render(request, "registration/signup.html", {"form": form})

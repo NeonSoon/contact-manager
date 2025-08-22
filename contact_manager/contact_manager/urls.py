@@ -20,4 +20,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('contacts.urls')),  # 將 contacts app 的路由加入
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

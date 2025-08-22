@@ -1,75 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>聯絡人列表</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h2 {
-            color: #333;
-        }
-        table {
-            border-collapse: collapse;
-            width: 80%;
-            margin-bottom: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:nth-child(even) {
-            background-color: #fafafa;
-        }
-        a {
-            text-decoration: none;
-            color: blue;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-<body>
-    <h2>📋 我的聯絡人</h2>
+{% extends "base.html" %}
 
-    {% if contacts %}
-        <table>
-            <thead>
-                <tr>
-                    <th>姓名</th>
-                    <th>電話</th>
-                    <th>Email</th>
-                    <th>操作</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for contact in contacts %}
-                    <tr>
-                        <td>{{ contact.name }}</td>
-                        <td>{{ contact.phone }}</td>
-                        <td>{{ contact.email }}</td>
-                        <td>
-                            <a href="{% url 'edit_contact' contact.id %}">編輯</a> |
-                            <a href="{% url 'delete_contact' contact.id %}">刪除</a>
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>目前沒有任何聯絡人。</p>
-    {% endif %}
+{% block title %}聯絡人清單{% endblock %}
 
-    <p>
-        <a href="{% url 'add_contact' %}">➕ 新增聯絡人</a> |
-        <a href="{% url 'logout' %}">登出</a>
-    </p>
-</body>
-</html>
+{% block content %}
+<h2>📋 聯絡人清單</h2>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>名字</th>
+      <th>Email</th>
+      <th>電話</th>
+      <th>動作</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.phone }}</td>
+      <td>
+        <a href="{% url 'edit_contact' contact.id %}" class="btn btn-sm btn-warning">編輯</a>
+        <a href="{% url 'delete_contact' contact.id %}" class="btn btn-sm btn-danger">刪除</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
